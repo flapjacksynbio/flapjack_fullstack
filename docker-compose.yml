@@ -1,0 +1,68 @@
+version: "3.3"
+
+services:
+  web:
+    container_name: flapjack_front_together
+    build:
+      context: ./flapjack_frontend  # Adjust this path to your frontend directory
+      args:
+        app_env: development
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - ./flapjack_frontend/.env.dev  # Adjust path as needed
+    volumes:
+      - './flapjack_frontend:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    stdin_open: true
+    depends_on:
+      - flapjack_api
+
+  flapjack_api:
+    container_name: flap_api
+    restart: always
+    build: 
+      context: ./flapjack_api  # Adjust this path to your backend directory
+    volumes:
+      - ./flapjack_api:/var/app/flap
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - PYTHONPATH=/var/app/flapjack_api
+    command: gunicorn flapjack_api.asgi:application -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 3600
+
+  db:
+    container_name: flap_db
+    restart: always
+    image: postgres:12.1
+    ports:
+      - "5433:5433"
+    environment:
+      POSTGRES_DB: registry
+      POSTGRES_USER: guillermo
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - db:/var/pg/data
+
+  redis:
+    image: redis
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
+    healthcheck:
+      test: redis-cli ping
+      interval: 5m
+      timeout: 30s
+      retries: 30
+
+volumes:
+  redis:
+  db:
