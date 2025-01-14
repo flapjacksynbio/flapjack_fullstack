@@ -1,0 +1,10 @@
+.study-field {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  margin-bottom: 20px;
+
+  .ant-btn {
+    width: 50%;
+  }
+}

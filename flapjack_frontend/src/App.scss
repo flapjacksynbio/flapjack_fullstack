@@ -1,0 +1,48 @@
+$contentPadding: 16px;
+$headerHeight: 64px;
+$sides-padding: calc(max(24px, 50vw - 576px));
+
+.site-layout-content {
+  background: #fff;
+  padding: 16px 32px;
+  min-height: calc(100vh - 166px);
+  border-radius: 1rem;
+}
+
+#flapjack-header {
+  height: $headerHeight;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 $sides-padding;
+}
+
+#flapjack-content {
+  padding: $contentPadding $sides-padding;
+}
+
+#flapjack-content.full-width {
+  padding: $contentPadding 24px;
+}
+
+#components-layout-demo-top .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 16px 16px 0;
+  align-items: center;
+  float: left;
+}
+
+.logo img {
+  width: 24px;
+  height: 31px;
+}
+
+.logo .logo-title {
+  color: #fff;
+  margin-left: 15px;
+}
+
+.footer {
+  text-align: center;
+}

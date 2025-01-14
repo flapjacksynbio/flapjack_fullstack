@@ -1,0 +1,47 @@
+.flapjack-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+
+  button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-step-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .step-card {
+    min-height: 200px;
+    text-align: center;
+    padding: 20px;
+    min-width: 600px;
+  }
+
+  .step-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+
+    .ant-btn {
+      width: 40%;
+    }
+  }
+}
+
+.select-or-create-field {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  margin-bottom: 20px;
+
+  .ant-btn {
+    width: 50%;
+  }
+}
