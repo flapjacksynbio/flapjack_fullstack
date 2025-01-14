@@ -1,0 +1,10 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+.vscode/
+.DS_Store
+cert/
+registry.sql
+node_modules
