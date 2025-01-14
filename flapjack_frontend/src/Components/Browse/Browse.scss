@@ -1,0 +1,11 @@
+.search-bar {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10px;
+
+  .ant-input-search {
+    @media (min-width: 720px) {
+      width: 40%
+    }
+  }
+}
