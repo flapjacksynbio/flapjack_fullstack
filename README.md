@@ -38,7 +38,7 @@
    REACT_APP_WS_API=ws://localhost:8000/ws/
    ```
    Then press esc and write :wq to write and quite.
-   This will establish the connection between the front and backend.
+   This will establish the connection between the frontend and backend.
 
 5. Navigate to the backend directory:
    ```bash
