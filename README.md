@@ -1,5 +1,5 @@
 # Flapjack Fullstack Documentation
----
+
 
 ## Overview
 **Flapjack Fullstack** is a repository that includes both the backend and frontend components of the Flapjack project in a single compose, facilitating the deployment.
