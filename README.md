@@ -11,6 +11,12 @@
 
 ## Getting Started
 
+### Usage
+
+Access the data programatically through the API. For more information read the [API documentation](https://flapjacksynbio.github.io/flapjack_api/?shell#introduction).
+
+For a better integration within Python workflows we developed [pyFlapjack](https://github.com/flapjacksynbio/pyFlapjack) to interface with the API.
+
 ### Prerequisites
 - Docker
 - Docker Compose
