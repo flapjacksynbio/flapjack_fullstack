@@ -50,11 +50,15 @@ For a better integration within Python workflows we developed [pyFlapjack](https
    ```bash
    cd ../flapjack_api
    ```
-6. Run the migrations to create the data model:
+6. Enter to Flapjack API docker bash:
    ```bash
    docker exec -it flap_api bash
+   ```   
+7. Run the migrations to create the data model:
+   ```bash
+   python manage.py migrate
    ```
-7. Start the services using Docker Compose:
+8. Start the services using Docker Compose:
    ```bash
    docker-compose up --build
    ```
