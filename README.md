@@ -46,22 +46,28 @@ For a better integration within Python workflows we developed [pyFlapjack](https
    Then press esc and write :wq to write and quite.
    This will establish the connection between the frontend and backend.
 
-5. Navigate to the backend directory:
+5. Navigate to the fullstack directory:
    ```bash
-   cd ../flapjack_api
+   cd ..
    ```
-6. Enter to Flapjack API docker bash:
-   ```bash
-   docker exec -it flap_api bash
-   ```   
-7. Run the migrations to create the data model:
-   ```bash
-   python manage.py migrate
-   ```
-8. Start the services using Docker Compose:
+6. Start the services using Docker Compose:
    ```bash
    docker-compose up --build
    ```
+7. Navigate to the backend directory:
+   ```bash
+   cd ../flapjack_api
+   ```
+
+8. Enter to Flapjack API docker bash:
+   ```bash
+   docker exec -it flap_api bash
+   ```   
+9. Run the migrations to create the data model:
+   ```bash
+   python manage.py migrate
+   ```
+
 
 ## Usage
 - Access the frontend at `http://localhost:3000`.
