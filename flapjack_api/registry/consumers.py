@@ -311,6 +311,8 @@ class UploadConsumer(AsyncWebsocketConsumer):
             s_media = meta_dict.loc['Media'][well]
             s_strain = meta_dict.loc['Strains'][well]
 
+            strains_list = []
+
             # skip well if media==None
             if s_media.upper() != 'NONE':
                 # create Media object
@@ -327,6 +329,8 @@ class UploadConsumer(AsyncWebsocketConsumer):
                     if s_strain not in existing_str:
                         strain = Strain(owner=self.user, name=s_strain, description='')
                         strain.save()
+
+                        strains_list.append(strain)
                     else:
                         strain = Strain.objects.filter(name__exact=s_strain)[0]
 
@@ -413,7 +417,6 @@ class UploadConsumer(AsyncWebsocketConsumer):
                 # create Sample object
                 samp = Sample(assay=Assay.objects.get(id=assay_id), 
                                 media=media, 
-                                strain=strain, 
                                 vector=vector, 
                                 row=ord(well[0])-64, 
                                 col=well[1:])
@@ -422,6 +425,9 @@ class UploadConsumer(AsyncWebsocketConsumer):
                 # assign supplements to sample
                 for sup in sample_supps:
                     samp.supplements.add(sup)
+
+                for strain in strains_list: 
+                    samp.strain.add(strain)
 
                 # Data value for each well
                 measurements = []

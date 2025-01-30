@@ -101,7 +101,7 @@ class Vector(models.Model):
 class Sample(models.Model):
     assay = models.ForeignKey(Assay, on_delete=models.CASCADE)
     media = models.ForeignKey(Media, null=True, on_delete=models.CASCADE)
-    strain = models.ForeignKey(Strain, null=True, on_delete=models.CASCADE)
+    strain = models.ManyToManyField(Strain, related_name="samples")
     vector = models.ForeignKey(Vector, null=True, on_delete=models.CASCADE)
     supplements = models.ManyToManyField(Supplement, related_name='samples')
     sboluri = models.URLField(blank=True)

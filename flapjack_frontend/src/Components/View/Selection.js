@@ -90,7 +90,10 @@ const Selection = ({ onSubmit }) => {
     }
     if (location.state) {
       const { study, assay, vector, media, strain, signal } = location.state
-      if (study) setSelectedStudies([study])
+      if (study) {
+        setSelectedStudies([study])
+        setStudiesAndChildAssays(study, true)
+      }
       if (assay) setSelectedAssays([assay])
       if (vector) setSelectedVectors([vector])
       if (media) setSelectedMedia([media])
@@ -101,6 +104,7 @@ const Selection = ({ onSubmit }) => {
         state: null,
       })
     }
+    // eslint-disable-next-line
   }, [location, history])
 
   const addSelected = (value, checked, setSelected) => {
