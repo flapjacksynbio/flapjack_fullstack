@@ -52,7 +52,7 @@ For a better integration within Python workflows we developed [pyFlapjack](https
    ```
 6. Start the services using Docker Compose:
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 7. Navigate to the backend directory:
    ```bash
