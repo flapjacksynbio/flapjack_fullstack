@@ -328,6 +328,7 @@ class UploadConsumer(AsyncWebsocketConsumer):
                     strain = None
                 else:
                     for t_strain in s_strain.split(','):
+                        t_strain = t_strain.strip()
                         if t_strain not in existing_str:
                             strain = Strain(owner=self.user, name=t_strain, description='')
                             strain.save()
