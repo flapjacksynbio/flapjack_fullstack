@@ -45,7 +45,7 @@ class Media(models.Model):
 class Strain(models.Model):
     owner = models.ForeignKey(
         'auth.User', related_name='strains', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     sboluri = models.URLField(blank=True)
 
