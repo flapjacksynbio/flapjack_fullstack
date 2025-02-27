@@ -45,7 +45,7 @@ class Media(models.Model):
 class Strain(models.Model):
     owner = models.ForeignKey(
         'auth.User', related_name='strains', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     sboluri = models.URLField(blank=True)
 
@@ -101,7 +101,7 @@ class Vector(models.Model):
 class Sample(models.Model):
     assay = models.ForeignKey(Assay, on_delete=models.CASCADE)
     media = models.ForeignKey(Media, null=True, on_delete=models.CASCADE)
-    strain = models.ForeignKey(Strain, null=True, on_delete=models.CASCADE)
+    strain = models.ManyToManyField(Strain, related_name="samples")
     vector = models.ForeignKey(Vector, null=True, on_delete=models.CASCADE)
     supplements = models.ManyToManyField(Supplement, related_name='samples')
     sboluri = models.URLField(blank=True)

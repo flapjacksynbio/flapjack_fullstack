@@ -421,7 +421,7 @@ class StrainInAssay(viewsets.ModelViewSet):
     def get_queryset(self):
         s_id = int(self.request.query_params['id'])
         samples = Assay.objects.get(id=s_id).sample_set.all()
-        return Strain.objects.filter(sample__in=samples).distinct()
+        return Strain.objects.filter(samples__in=samples).distinct()
 
 
 class MediaInAssay(viewsets.ModelViewSet):
