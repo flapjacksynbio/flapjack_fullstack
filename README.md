@@ -87,11 +87,16 @@ For a better integration within Python workflows we developed [pyFlapjack](https
 
 ## Changing the object structure
 
-To apply data base structure changes make sure to run
+1. Start a new Docker terminal:
+   ```bash
+   docker exec -it flap_api bash
+   ```   
+
+2. To apply data base structure changes make sure to run:
    ```bash
    python manage.py makemigrations
    ```
-and then:
+3. Finally apply the changes running:
    ```bash
    python manage.py migrate
    ```
