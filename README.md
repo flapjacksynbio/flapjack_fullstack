@@ -85,4 +85,15 @@ For a better integration within Python workflows we developed [pyFlapjack](https
    ```
 5. Open a pull request.
 
+## Changing the object structure
+
+To apply data base structure changes make sure to run
+   ```bash
+   python manage.py makemigrations
+   ```
+and then:
+   ```bash
+   python manage.py migrate
+   ```
+
 ---
