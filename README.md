@@ -54,16 +54,12 @@ For a better integration within Python workflows we developed [pyFlapjack](https
    ```bash
    docker compose up --build
    ```
-7. Navigate to the backend directory:
-   ```bash
-   cd ../flapjack_api
-   ```
 
-8. Enter to Flapjack API docker bash:
+7. Enter to Flapjack API docker bash:
    ```bash
    docker exec -it flap_api bash
    ```   
-9. Run the migrations to create the data model:
+8. Run the migrations to create the data model:
    ```bash
    python manage.py migrate
    ```
