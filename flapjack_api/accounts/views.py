@@ -25,14 +25,34 @@ def registration(request):
 @decorators.api_view(["POST"])
 @decorators.permission_classes([permissions.AllowAny])
 def log_in(request):
-    username, password = request.data['username'], request.data['password']
-    user = authenticate(username=username, password=password)
+    try:
+        username_or_email = request.data['username']
+        password = request.data['password']
+    except KeyError:
+        return response.Response({"detail": "Please provide both username and password"}, status.HTTP_400_BAD_REQUEST)
+    
+    # First try with the provided input as username
+    user = authenticate(username=username_or_email, password=password)
+    
+    # If that fails, try with the input as email
+    if user is None:
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        try:
+            user_obj = User.objects.get(email=username_or_email)
+            user = authenticate(username=user_obj.username, password=password)
+        except User.DoesNotExist:
+            pass
+
+    import time
+    time.sleep(0.1)  # small delay not to overload the server
+    
     if user is not None:
         refresh = RefreshToken.for_user(user)
         res = {
             "refresh": str(refresh),
             "access": str(refresh.access_token),
-            "username": username,
+            "username": user.username,
             "email": user.email
         }
         return response.Response(res, status.HTTP_200_OK)
