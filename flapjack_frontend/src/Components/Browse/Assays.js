@@ -1,10 +1,34 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button, Space } from 'antd'
+import { Button, Space, List, Row, Col } from 'antd'
 import BrowseTable from './BrowseTable'
 
 const Assays = () => {
   const history = useHistory()
+
+  const renderUris = (sboluri, record) => {
+    let uri = 'No Sbol Uri'
+    if (sboluri) {
+      uri = (
+        <Button 
+          type="link"
+          href={sboluri}
+          size="small">
+          Go to SynBioHub
+        </Button>
+      )
+    }
+    
+    return (
+      <List size="small">
+        <List.Item key={0}>
+          <Row style={{ width: '100%' }}>
+            <Col span={14}>{uri}</Col>
+          </Row>
+        </List.Item>
+      </List>
+    )
+  }
 
   const renderActions = (text, record) => {
     const handleViewClick = () => {
@@ -59,6 +83,12 @@ const Assays = () => {
       key: 'machine',
       dataIndex: 'machine',
       sorter: (a, b) => a.name.localeCompare(b.name),
+    },
+    {
+      title: 'SBOL URI',
+      key: 'sboluri',
+      dataIndex: 'sboluri',
+      render: renderUris,
     },
     {
       title: 'Actions',
