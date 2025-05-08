@@ -3,10 +3,27 @@ from rest_framework import permissions, response, decorators, status
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.exceptions import TokenError
 from .serializers import UserCreateSerializer
+from drf_spectacular.utils import extend_schema
 
 User = get_user_model()
 
-
+@extend_schema(
+    tags=['authentication'],
+    description='Register a new user and return tokens',
+    responses={201: {
+        'type': 'object',
+        'properties': {
+            'refresh': {'type': 'string'},
+            'access': {'type': 'string'},
+        }
+    },
+    400: {
+        'type': 'object',
+        'properties': {
+            'detail': {'type': 'string'},
+        }
+    }}
+)
 @decorators.api_view(["POST"])
 @decorators.permission_classes([permissions.AllowAny])
 def registration(request):

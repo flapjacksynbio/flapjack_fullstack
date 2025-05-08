@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_spectacular',
     'rest_framework_filters',
     'corsheaders',
     'rest_framework',
@@ -126,7 +127,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 ASGI_APPLICATION = "flapjack_api.routing.application"
@@ -137,6 +139,20 @@ CHANNEL_LAYERS = {
             "hosts": [('redis', 6379)],
         },
     },
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Flapjack API',
+    'DESCRIPTION': 'API for Flapjack application',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # Other settings
+    'COMPONENT_SPLIT_REQUEST': True,
+    'TAGS': [
+        {'name': 'authentication', 'description': 'Authentication endpoints'},
+        {'name': 'registry', 'description': 'Registry endpoints'},
+        # Add more tags as needed
+    ]
 }
 
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
